@@ -36,7 +36,7 @@ const Home = () => {
           </p>
 
           <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-            John Doe
+            Sudhir Fernando
           </h1>
 
           <h2 className="text-3xl md:text-4xl mt-4 font-semibold text-gray-300">
