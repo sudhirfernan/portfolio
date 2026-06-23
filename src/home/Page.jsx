@@ -11,22 +11,10 @@ const Home = () => {
     <div className="min-h-screen bg-gray-900 text-white">
 
       {/* Navbar */}
-      <nav className="flex justify-between items-center px-10 py-6">
-        <h1 className="text-3xl font-bold text-cyan-400">
-          MyPortfolio
-        </h1>
-
-        <ul className="hidden md:flex gap-8 text-lg">
-          <li className="hover:text-cyan-400 cursor-pointer">Home</li>
-          <li className="hover:text-cyan-400 cursor-pointer">About</li>
-          <li className="hover:text-cyan-400 cursor-pointer">Projects</li>
-          <li className="hover:text-cyan-400 cursor-pointer">Skills</li>
-          <li className="hover:text-cyan-400 cursor-pointer">Contact</li>
-        </ul>
-      </nav>
+      
 
       {/* Hero Section */}
-      <section className="container mx-auto px-10 py-16 flex flex-col-reverse lg:flex-row items-center justify-between">
+      <section className="container mt-10 mx-auto px-10 py-16 flex flex-col-reverse lg:flex-row items-center justify-between">
 
         {/* Left Side */}
         <div className="lg:w-1/2 text-center lg:text-left">
