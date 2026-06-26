@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Header() {
     return (
         <header className="bg-white shadow-md fixed top-0 left-0 w-full z-50">
@@ -7,10 +9,12 @@ function Header() {
                 </h1>
 
                 <nav className="hidden md:flex space-x-6 text-gray-700 font-medium">
-                    <a Link to="/" className="hover:text-blue-500 cursor-pointer">Home</a>
-                    <a Link to="/about" className="hover:text-blue-500 cursor-pointer">About</a>
-                    <a Link to="/projects" className="hover:text-blue-500 cursor-pointer">Projects</a>
-                    <a Link to="/contact" className="hover:text-blue-500 cursor-pointer">Contact</a>
+                    <Link to="/" className="hover:text-blue-500 cursor-pointer">Home</Link>
+                    <Link to="/about" className="hover:text-blue-500 cursor-pointer">About</Link>
+                    <Link to="/projects" className="hover:text-blue-500 cursor-pointer">Projects</Link>
+                    <Link to="/contact" className="hover:text-blue-500 cursor-pointer">Contact</Link>
+                    <Link to="/chatbot" className="hover:text-blue-500 cursor-pointer">Chatbot</Link>
+                    
                 </nav>
 
                 <button className="hidden md:inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
