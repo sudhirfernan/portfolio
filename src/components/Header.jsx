@@ -14,7 +14,7 @@ function Header() {
                     <Link to="/projects" className="hover:text-blue-500 cursor-pointer">Projects</Link>
                     <Link to="/contact" className="hover:text-blue-500 cursor-pointer">Contact</Link>
                     <Link to="/chatbot" className="hover:text-blue-500 cursor-pointer">Chatbot</Link>
-                    
+                             
                 </nav>
 
                 <button className="hidden md:inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">

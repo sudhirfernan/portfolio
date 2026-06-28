@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { FaPaperPlane, FaRobot, FaUser } from "react-icons/fa";
 
-const Chatbot = () => {
+export default function Chatbot() {
   const [messages, setMessages] = useState([
     {
+      text: "Hello! 👋 How can I help you today?",
       sender: "bot",
-      text: "Hello! 👋 I'm your AI Assistant. How can I help you today?",
     },
   ]);
 
@@ -14,49 +13,42 @@ const Chatbot = () => {
   const sendMessage = () => {
     if (!input.trim()) return;
 
-    setMessages((prev) => [
-      ...prev,
-      { sender: "user", text: input },
-      {
-        sender: "bot",
-        text: "This is where your AI response will appear.",
-      },
-    ]);
+    const userMessage = {
+      text: input,
+      sender: "user",
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+
+    // Temporary bot reply
+    setTimeout(() => {
+      setMessages((prev) => [
+        ...prev,
+        {
+          text: "I'm still learning! 🤖",
+          sender: "bot",
+        },
+      ]);
+    }, 20);
 
     setInput("");
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
 
-      {/* Sidebar */}
-      <aside className="hidden md:flex w-64 bg-gray-900 text-white flex-col">
-        <div className="p-6 border-b border-gray-700">
-          <h1 className="text-2xl font-bold">🐶 Pet AI</h1>
-          <p className="text-gray-400 text-sm">
-            Veterinary Assistant
+      <div className="w-full max-w-md h-[650px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+
+        {/* Header */}
+        <div className="bg-blue-600 text-white p-4">
+          <h1 className="text-xl font-bold">AI Chatbot</h1>
+          <p className="text-sm opacity-80">
+            Ask me anything
           </p>
         </div>
 
-        <div className="flex-1 p-4">
-          <button className="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-lg transition">
-            + New Chat
-          </button>
-        </div>
-      </aside>
-
-      {/* Chat Section */}
-      <main className="flex-1 flex flex-col">
-
-        {/* Header */}
-        <header className="bg-white shadow px-6 py-4">
-          <h2 className="text-xl font-semibold">
-            AI Veterinary Assistant
-          </h2>
-        </header>
-
-        {/* Messages */}
-        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6">
+        {/* Chat Area */}
+        <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
 
           {messages.map((msg, index) => (
             <div
@@ -68,35 +60,14 @@ const Chatbot = () => {
               }`}
             >
               <div
-                className={`flex gap-3 max-w-3xl ${
+                className={`px-4 py-2 rounded-2xl max-w-[75%]
+                ${
                   msg.sender === "user"
-                    ? "flex-row-reverse"
-                    : ""
+                    ? "bg-blue-600 text-white rounded-br-none"
+                    : "bg-gray-200 text-gray-900 rounded-bl-none"
                 }`}
               >
-                <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                    msg.sender === "bot"
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-800 text-white"
-                  }`}
-                >
-                  {msg.sender === "bot" ? (
-                    <FaRobot />
-                  ) : (
-                    <FaUser />
-                  )}
-                </div>
-
-                <div
-                  className={`px-5 py-3 rounded-2xl shadow ${
-                    msg.sender === "bot"
-                      ? "bg-white"
-                      : "bg-blue-600 text-white"
-                  }`}
-                >
-                  {msg.text}
-                </div>
+                {msg.text}
               </div>
             </div>
           ))}
@@ -104,36 +75,30 @@ const Chatbot = () => {
         </div>
 
         {/* Input */}
-        <div className="bg-white border-t p-5">
-          <div className="max-w-5xl mx-auto flex gap-3">
+        <div className="border-t p-3 flex gap-2">
 
-            <input
-              type="text"
-              placeholder="Ask me anything..."
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  sendMessage();
-                }
-              }}
-              className="flex-1 border rounded-xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+          <input
+            type="text"
+            placeholder="Type your message..."
+            className="flex-1 border rounded-full px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") sendMessage();
+            }}
+          />
 
-            <button
-              onClick={sendMessage}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 rounded-xl transition"
-            >
-              <FaPaperPlane />
-            </button>
+          <button
+            onClick={sendMessage}
+            className="bg-blue-600 text-white px-5 rounded-full hover:bg-blue-700 transition"
+          >
+            Send
+          </button>
 
-          </div>
         </div>
 
-      </main>
+      </div>
 
     </div>
   );
-};
-
-export default Chatbot;
+}
